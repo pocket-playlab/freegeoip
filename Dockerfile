@@ -1,5 +1,5 @@
-FROM golang:1.6
-
+FROM golang:1.6-alpine
+RUN apk add --no-cache git && rm -rf /var/cache/apk/*
 COPY cmd/freegeoip/public /var/www
 
 ADD . /go/src/github.com/fiorix/freegeoip
@@ -14,3 +14,6 @@ ENTRYPOINT ["/go/bin/freegeoip"]
 #
 # Example:
 # CMD ["-use-x-forwarded-for", "-public", "/var/www", "-internal-server", "8888"]
+
+EXPOSE 3000
+CMD ["-http", ":3000", "-use-x-forwarded-for", "-public", "/var/www"]
