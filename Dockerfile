@@ -1,4 +1,4 @@
-FROM golang:1.6-alpine
+FROM golang:1.7-alpine
 RUN apk add --no-cache git && rm -rf /var/cache/apk/*
 COPY cmd/freegeoip/public /var/www
 
